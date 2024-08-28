@@ -3,21 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Module02Exercise01.View.EmployeePage"
              Title="EmployeePage">
-    <VerticalStackLayout Padding="10">
+    <VerticalStackLayout>
+        <Label Text="Manager" FontSize="24" FontAttributes="Bold" />
+        <Label Text="{Binding ManagerName}" FontSize="20" />
 
+        <Button Text="Load Manager Data"
+                Command="{Binding LoadEmployeeDataCommand}"/>
 
-        <ListView ItemsSource="{Binding Employees}"
-                  SelectedItem="{Binding Selectedemployee}">
+        <Label Text="Employees" FontSize="24" FontAttributes="Bold" />
+        <ListView ItemsSource="{Binding Employees}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding FullNames}" Detail="{Binding Position}"/>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding FullName}" Grid.Column="0" FontSize="18" VerticalOptions="Center" />
+                            <Label Text="{Binding Position}" Grid.Column="1" FontSize="18" VerticalOptions="Center" />
+                        </Grid>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
-
-        <Button Text="Load Manager Data"/>
-        
     </VerticalStackLayout>
-
 </ContentPage>
